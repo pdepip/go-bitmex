@@ -6,21 +6,36 @@ import (
 
 func TestGetInstruments(t *testing.T) {
     client := New("", "")
-    instruments, err := client.GetInstruments()
+    _, err := client.GetInstruments()
     if err != nil {
         t.Fatal(err)
     }
-
-    t.Logf("%+v\n", instruments)
 }
 
 func TestGetActiveInstruments(t *testing.T) {
     client := New("", "")
-    instruments, err := client.GetActiveInstruments()
+    _, err := client.GetActiveInstruments()
+    if err != nil {
+        t.Fatal(err)
+    }
+}
+
+func TestGetActiveInstrumentsAndIndices(t *testing.T) {
+    client := New("", "")
+    _, err := client.GetActiveInstrumentsAndIndices()
+    if err != nil {
+        t.Fatal(err)
+    }
+}
+
+func TestGetIndices(t *testing.T) {
+    client := New("", "")
+    instruments, err := client.GetIndices()
     if err != nil {
         t.Fatal(err)
     }
 
-    t.Logf("%+v\n", instruments)
+    for _, i := range instruments {
+        t.Logf("%+v\n", i.Symbol)
+    }
 }
-

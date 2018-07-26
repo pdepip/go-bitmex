@@ -32,6 +32,22 @@ func (b *Bitmex) GetActiveInstruments() (instruments []Instrument, err error) {
 	return
 }
 
+// Get all active instruments and all indices.
+func (b *Bitmex) GetActiveInstrumentsAndIndices() (instruments []Instrument, err error) {
+
+    url := fmt.Sprintf("/instrument/activeAndIndices")
+    _, err = b.client.do(http.MethodGet, url, nil, &instruments)
+    return
+}
+
+// Gets all price indices
+func (b *Bitmex) GetIndices() (instruments []Instrument, err error) {
+
+    url := fmt.Sprintf("/instrument/indices")
+    _, err = b.client.do(http.MethodGet, url, nil, &instruments)
+    return
+}
+
 
 type Instrument struct {
 	Symbol                         string    `json:"symbol"`
